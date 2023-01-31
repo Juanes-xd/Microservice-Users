@@ -41,7 +41,7 @@ const userSchema = new Schema(
 );
 
 userSchema.statics.encryptPassword = async (password) => {
-  const salt = await bcrypt.genSalt(10);
+  const salt = await bcrypt.genSalt(5);
   return await bcrypt.hash(password, salt);
 };
 

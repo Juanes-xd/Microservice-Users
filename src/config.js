@@ -1,3 +1,6 @@
+import { config } from "dotenv";
+config();
+
 export default {
-  SECRET: process.env.SECRET,
+  SECRET: process.env.CLAVE,
 };
