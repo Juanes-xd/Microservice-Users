@@ -30,7 +30,7 @@ export const signup = async (req, res) => {
     expiresIn: 86400, //24 horas
   });
 
-  res.status(200).json({ token });
+  res.status(200).json({ usuario: { token, savedUser } });
 };
 
 export const signin = async (req, res) => {
@@ -50,6 +50,15 @@ export const signin = async (req, res) => {
   const token = jwt.sign({ id: userFound._id }, config.SECRET, {
     expiresIn: 84600,
   });
+  res.json({ usuario: { token, userFound } });
+};
 
-  res.json({ token });
+export const getUser = async (req, res) => {
+  // const { id } = req.params;
+  try {
+    const user = await User.find();
+    res.json(user);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
 };
